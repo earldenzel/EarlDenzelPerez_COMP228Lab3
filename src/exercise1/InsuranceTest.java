@@ -28,7 +28,6 @@ public class InsuranceTest {
                 askNumberAgain = true;
             }
         }
-        System.out.println(insuranceObjectCount);
 
         insurances = new Insurance[insuranceObjectCount];
         //loop to create object

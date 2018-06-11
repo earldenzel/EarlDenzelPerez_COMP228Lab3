@@ -12,4 +12,22 @@ package exercise2;
 */
 
 abstract class Student {
+    private String name;
+    private Boolean isFullTime;
+
+    public abstract double calculateTuition();
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setFullTime(Boolean fullTime) {
+        isFullTime = fullTime;
+    }
 }
