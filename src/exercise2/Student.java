@@ -15,12 +15,13 @@ abstract class Student {
     private String name;
     private Boolean isFullTime;
 
+    //abstract methods
     public abstract double calculateTuition();
 
+    //getters and setters
     public Student(String name) {
         this.name = name;
     }
-
     public String getName() {
         return name;
     }
@@ -30,4 +31,5 @@ abstract class Student {
     public void setFullTime(Boolean fullTime) {
         isFullTime = fullTime;
     }
+
 }

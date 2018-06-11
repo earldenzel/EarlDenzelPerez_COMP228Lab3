@@ -1,64 +1,49 @@
 package exercise1;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //driver class
 public class InsuranceTest {
     public static void main(String[] args) {
-        Boolean askNumberAgain = true;
-        int insuranceObjectCount = 0;
-        Insurance[] insurances;
+        Insurance[] insurances; //exercise requires array, not array list
+        List<Insurance> insuranceList = new ArrayList<Insurance>(); //we're using lists to make it easy to think
 
-        //i want to force number of insurance objects as a number between 1-10
-        while (askNumberAgain) {
-            //check if number
-            try {
-                insuranceObjectCount = Integer.parseInt(JOptionPane.showInputDialog("How many insurance items are we processing today?"));
-                askNumberAgain = false;
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Number of insurance objects should be a number. You will be asked to input this again.");
-                askNumberAgain = true;
-            }
-            //check if greater than 0 or less than 11
-            if (insuranceObjectCount > 0 && insuranceObjectCount < 11){
-                askNumberAgain = false;
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Number of insurance objects should be greater than 0 and less than 11. You will be asked to input this again.");
-                askNumberAgain = true;
+        String[] buttons = { "Health Insurance", "Life Insurance", "Quit"};
+        int rc = 0;
+        String insuranceType;
+        double insuranceCost;
+
+        //add insurance objects until user gets bored of the process and quits
+        while (rc != 2){
+            rc = JOptionPane.showOptionDialog(
+                    null,
+                    "What type of insurance are you processing?",
+                    "Enter Type", JOptionPane.DEFAULT_OPTION, 3, null, buttons, buttons[2]);
+
+            switch (rc){
+                case 0: //health insurance
+                    insuranceType = JOptionPane.showInputDialog("Please enter health insurance type");
+                    insuranceCost = Double.parseDouble(JOptionPane.showInputDialog("Please enter the monthly fee for " + insuranceType));
+                    insuranceList.add(new HealthInsurance(insuranceType,insuranceCost));
+                    JOptionPane.showMessageDialog(null,"Health insurance added to list");
+                    break;
+                case 1: //life insurance
+                    insuranceType = JOptionPane.showInputDialog("Please enter life insurance type");
+                    insuranceCost = Double.parseDouble(JOptionPane.showInputDialog("Please enter monthly fee for " + insuranceType));
+                    insuranceList.add(new LifeInsurance(insuranceType,insuranceCost));
+                    JOptionPane.showMessageDialog(null,"Life insurance added to list");
+                    break;
             }
         }
 
-        insurances = new Insurance[insuranceObjectCount];
-        //loop to create object
-        for (int i = 0; i < insuranceObjectCount; i++){
-            insurances[i] = CreateInsuranceObject();
-        }
+        //convert list to array
+        insurances = new Insurance[insuranceList.size()];
+        insurances = insuranceList.toArray(insurances);
+
         for (Insurance insurance: insurances) {
-            JOptionPane.showMessageDialog(null, insurance.displayInsuranceInfo());
+            JOptionPane.showMessageDialog(null, insurance.displayInfo());
         }
-    }
-
-    public static Insurance CreateInsuranceObject(){
-        String[] buttons = { "Health Insurance", "Life Insurance"};
-        Insurance insurance = null;
-        int rc;
-        rc = JOptionPane.showOptionDialog(
-                null,
-                "What type of insurance are you processing?",
-                "Enter Type", JOptionPane.DEFAULT_OPTION, 3, null, buttons, buttons[1]);
-        String insuranceType = JOptionPane.showInputDialog("Please enter insurance type");
-        double insuranceCost = Double.parseDouble(JOptionPane.showInputDialog("Insurance cost amount?"));
-
-        switch (rc){
-            case 0: //health insurance
-                insurance = new HealthInsurance(insuranceType,insuranceCost);
-                break;
-            case 1: //life insurance
-                insurance = new LifeInsurance(insuranceType,insuranceCost);
-                break;
-        }
-
-        return insurance;
     }
 }

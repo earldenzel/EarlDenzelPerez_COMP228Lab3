@@ -1,12 +1,14 @@
 package exercise1;
 
 public class HealthInsurance extends Insurance{
+    @Override
     public void setInsuranceCost(double newInsuranceCost) {
         super.setCost(newInsuranceCost);
     }
 
-    public String displayInsuranceInfo(){
-        return String.format("%s%n%s %s%n%s %.2f",
+    @Override
+    public String displayInfo(){
+        return String.format("%s%n%s %s%n%s $%.2f",
                 "Health Insurance",
                 "Insurance Type:",
                 super.getInsuranceType(),
@@ -15,6 +17,7 @@ public class HealthInsurance extends Insurance{
                 );
     }
 
+    //constructor
     public HealthInsurance(String insuranceType, double cost) {
         super(insuranceType, cost);
     }

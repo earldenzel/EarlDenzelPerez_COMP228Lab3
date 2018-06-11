@@ -21,13 +21,13 @@ package exercise1;
 * sending setInsuranceCost messages to each object in the array and displaying this information on the screen.
 */
 
-abstract class Insurance {
-    private String insuranceType;
+public abstract class Insurance {
+    private final String insuranceType;
     private double cost;
 
     //abstract methods
     public abstract void setInsuranceCost(double newInsuranceCost);
-    public abstract String displayInsuranceInfo();
+    public abstract String displayInfo();
 
     //constructor
     public Insurance(String insuranceType, double cost) {
