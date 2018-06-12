@@ -24,5 +24,81 @@ package exercise3;
 * Store the created Mortgage objects in the array. When data entry is complete, display all mortgages.
 */
 
-public class Mortgage {
+abstract class Mortgage {
+    private static final int SHORT_TERM = 1;
+    private static final int MEDIUM_TERM = 3;
+    private static final int LONG_TERM = 5;
+
+    private final String mortgageNumber;
+    private final String customerName;
+    private double mortgageAmount;
+    private double interestRate;
+    private int mortgageTerm;
+
+    //constructor
+    public Mortgage(String mortgageNumber, String customerName, double mortgageAmount, double interestRate, int mortgageTerm) {
+        checkValidMortgageAmount (mortgageAmount);
+
+        this.mortgageNumber = mortgageNumber;
+        this.customerName = customerName;
+        this.mortgageTerm = checkCorrectMortgageTerm(mortgageTerm);
+        this.interestRate = interestRate;
+        this.mortgageTerm = mortgageTerm;
+    }
+
+    //abstract methods
+    public abstract String getMortgageInfo();
+
+    //checkers
+    private static void checkValidMortgageAmount(double amount){
+        if (amount < 0 || amount > 300000){
+            throw new IllegalArgumentException ("Mortgage amount must be between $0-$300,000");
+        }
+    }
+
+    private static int checkCorrectMortgageTerm(int term){
+        switch (term){
+            case SHORT_TERM:
+            case MEDIUM_TERM:
+            case LONG_TERM:
+                return term;
+            default:
+                return SHORT_TERM;
+        }
+    }
+
+    //getters
+    public String getMortgageNumber() {
+        return mortgageNumber;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public double getMortgageAmount() {
+        return mortgageAmount;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public int getMortgageTerm() {
+        return mortgageTerm;
+    }
+
+    //setters
+    public void setMortgageAmount(double mortgageAmount) {
+        checkValidMortgageAmount(mortgageAmount);
+        this.mortgageAmount = mortgageAmount;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public void setMortgageTerm(int mortgageTerm) {
+        this.mortgageTerm = checkCorrectMortgageTerm(mortgageTerm);
+    }
 }
