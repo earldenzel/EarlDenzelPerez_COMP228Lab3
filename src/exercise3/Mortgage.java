@@ -24,10 +24,9 @@ package exercise3;
 * Store the created Mortgage objects in the array. When data entry is complete, display all mortgages.
 */
 
-abstract class Mortgage {
-    private static final int SHORT_TERM = 1;
-    private static final int MEDIUM_TERM = 3;
-    private static final int LONG_TERM = 5;
+import java.text.DecimalFormat;
+
+abstract class Mortgage  implements MortgageConstants{
 
     private final String mortgageNumber;
     private final String customerName;
@@ -38,21 +37,36 @@ abstract class Mortgage {
     //constructor
     public Mortgage(String mortgageNumber, String customerName, double mortgageAmount, double interestRate, int mortgageTerm) {
         checkValidMortgageAmount (mortgageAmount);
+        checkValidInterestRate (interestRate);
 
         this.mortgageNumber = mortgageNumber;
         this.customerName = customerName;
         this.mortgageTerm = checkCorrectMortgageTerm(mortgageTerm);
         this.interestRate = interestRate;
-        this.mortgageTerm = mortgageTerm;
+        this.mortgageAmount = mortgageAmount;
     }
 
-    //abstract methods
-    public abstract String getMortgageInfo();
+    public String getMortgageInfo(){
+        DecimalFormat percent = new DecimalFormat("#%");
+        return String.format("Mortgage%n%s: %s%n%s: %s%n%s: %s%n%s: $%.2f%n%s:%d %s%n%s: %s",
+                "Policy Number", getMortgageNumber(),
+                "Customer Name", getCustomerName(),
+                "Bank", BANK_NAME,
+                "Mortgage Amount", getMortgageAmount(),
+                "Term", getMortgageTerm(), "years",
+                "Interest Rate", percent.format(getInterestRate()));
+    }
 
     //checkers
     private static void checkValidMortgageAmount(double amount){
-        if (amount < 0 || amount > 300000){
+        if (amount < 0 || amount > MAXIMUM_MORTGAGE){
             throw new IllegalArgumentException ("Mortgage amount must be between $0-$300,000");
+        }
+    }
+
+    private static void checkValidInterestRate(double rate){
+        if (rate < 0){
+            throw new IllegalArgumentException ("Interest rate must be 0% or greater");
         }
     }
 
@@ -95,6 +109,7 @@ abstract class Mortgage {
     }
 
     public void setInterestRate(double interestRate) {
+        checkValidInterestRate(interestRate);
         this.interestRate = interestRate;
     }
 

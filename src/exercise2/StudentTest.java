@@ -7,12 +7,13 @@ import java.util.List;
 //driver class
 public class StudentTest {
     public static void main(String[] args) {
+        //variables
         List<Student> students = new ArrayList<Student>();
-
-        //add students until user decides to stop
         String[] buttons = { "Add full-time student", "Add part-time student", "Quit" };
         int rc = 0;
         String name;
+
+        //add students until user decides to stop
         while (rc != 2){
             rc = JOptionPane.showOptionDialog(
                     null,
