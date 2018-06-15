@@ -8,7 +8,7 @@ public class LifeInsurance extends Insurance {
 
     @Override
     public String displayInfo(){
-        return String.format("%s%n%s %s%n%s $%.2f",
+        return String.format("%s%n%s %s%n%s $%.2f%n",
                 "Life Insurance",
                 "Insurance Type:",
                 super.getInsuranceType(),

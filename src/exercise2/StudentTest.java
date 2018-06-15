@@ -9,7 +9,7 @@ public class StudentTest {
     public static void main(String[] args) {
         //variables
         List<Student> students = new ArrayList<Student>();
-        String[] buttons = { "Add full-time student", "Add part-time student", "Quit" };
+        String[] buttons = { "Add full-time student", "Add part-time student", "Done adding" };
         int rc = 0;
         String name;
 

@@ -31,9 +31,18 @@ public abstract class Insurance {
 
     //constructor
     public Insurance(String insuranceType, double cost) {
+        checkInsuranceCost(cost);
         this.insuranceType = insuranceType;
         this.cost = cost;
     }
+
+    //checkers
+    private static void checkInsuranceCost(double cost){
+        if (cost < 0){
+            throw new IllegalArgumentException("Cost cannot be negative");
+        }
+    }
+
 
     //getters
     public String getInsuranceType() {
@@ -45,6 +54,7 @@ public abstract class Insurance {
     }
 
     public void setCost(double cost) {
+        checkInsuranceCost(cost);
         this.cost = cost;
     }
 }
