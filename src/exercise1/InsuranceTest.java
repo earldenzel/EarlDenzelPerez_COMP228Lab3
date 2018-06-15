@@ -8,7 +8,7 @@ import java.util.List;
 public class InsuranceTest {
     public static void main(String[] args) {
         Insurance[] insurances; //exercise requires array, not array list
-        List<Insurance> insuranceList = new ArrayList<Insurance>(); //we're using lists to make it easy to think
+        List<Insurance> insuranceList = new ArrayList<Insurance>(); //we're using lists to make it easy to code
 
         String[] buttons = { "Health Insurance", "Life Insurance", "Quit"};
         int rc = 0;
@@ -42,8 +42,11 @@ public class InsuranceTest {
         insurances = new Insurance[insuranceList.size()];
         insurances = insuranceList.toArray(insurances);
 
+        //show all added insurances
+        String message = "";
         for (Insurance insurance: insurances) {
-            JOptionPane.showMessageDialog(null, insurance.displayInfo());
+            message += String.format("%s%n", insurance.displayInfo());
         }
+        JOptionPane.showMessageDialog(null, message);
     }
 }

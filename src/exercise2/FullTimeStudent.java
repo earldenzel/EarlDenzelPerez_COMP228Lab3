@@ -8,13 +8,12 @@ public class FullTimeStudent extends Student {
 
     //constructor
     public FullTimeStudent(String name) {
-        super(name);
-        super.setFullTime(true);
+        super(name, true);
     }
     
     @Override
     public String toString(){
-        return String.format("%s%s%n%s$%.2f",
+        return String.format("%s%s%n%s$%.2f%n",
                 "Full-time Student: ",
                 super.getName(),
                 "Tuition: ",

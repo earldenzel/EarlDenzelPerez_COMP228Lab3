@@ -48,7 +48,7 @@ abstract class Mortgage  implements MortgageConstants{
 
     public String getMortgageInfo(){
         DecimalFormat percent = new DecimalFormat("#%");
-        return String.format("Mortgage%n%s: %s%n%s: %s%n%s: %s%n%s: $%.2f%n%s:%d %s%n%s: %s",
+        return String.format("Mortgage%n%s: %s%n%s: %s%n%s: %s%n%s: $%.2f%n%s: %d %s%n%s: %s",
                 "Policy Number", getMortgageNumber(),
                 "Customer Name", getCustomerName(),
                 "Bank", BANK_NAME,

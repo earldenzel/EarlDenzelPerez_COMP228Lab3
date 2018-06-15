@@ -12,24 +12,22 @@ package exercise2;
 */
 
 abstract class Student {
-    private String name;
-    private Boolean isFullTime;
+    private final String name;
+    private final boolean isFullTime;
 
     //abstract methods
     public abstract double calculateTuition();
 
-    //getters and setters
-    public Student(String name) {
+    //constructor
+    public Student(String name, boolean isFullTime) {
         this.name = name;
+        this.isFullTime = isFullTime;
     }
+
+    //getter and setter
     public String getName() {
         return name;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setFullTime(Boolean fullTime) {
-        isFullTime = fullTime;
-    }
+    private boolean getIsFullTime(){ return isFullTime; }
 
 }

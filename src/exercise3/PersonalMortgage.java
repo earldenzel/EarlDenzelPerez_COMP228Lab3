@@ -12,7 +12,7 @@ public class PersonalMortgage extends Mortgage {
     public String getMortgageInfo() {
         DecimalFormat percent = new DecimalFormat("#%");
         return String.format("%s %s (%s %s)%n",
-                "Business",
+                "Personal",
                 super.getMortgageInfo(),
                 percent.format(PERSONAL_RATE),
                 "above the prime rate");

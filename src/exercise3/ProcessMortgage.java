@@ -29,8 +29,9 @@ public class ProcessMortgage {
             Mortgage mortgage;
             String[] buttons = { "Business Mortgage", "Personal Mortgage"};
 
+            //ask user for mortgage details until valid details are provided
             while (!validMortgage){
-                String policyNumber = JOptionPane.showInputDialog("Please input policy number for application");
+                String policyNumber = JOptionPane.showInputDialog("Please input policy number for application #" + (i+1));
                 String customerName = JOptionPane.showInputDialog("Enter customer name");
                 int rc = JOptionPane.showOptionDialog(
                         null,
@@ -45,6 +46,7 @@ public class ProcessMortgage {
                             mortgage = new BusinessMortgage(policyNumber,customerName,mortgageAmount,primeRate,mortgageTerm);
                             validMortgage = true;
                             mortgages[i] = mortgage;
+                            JOptionPane.showMessageDialog(null, "New business mortgage added!");
                         }
                         catch (Exception e){
                             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -55,6 +57,7 @@ public class ProcessMortgage {
                             mortgage = new PersonalMortgage(policyNumber,customerName,mortgageAmount,primeRate,mortgageTerm);
                             validMortgage = true;
                             mortgages[i] = mortgage;
+                            JOptionPane.showMessageDialog(null, "New personal mortgage added!");
                         }
                         catch (Exception e){
                             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -66,8 +69,11 @@ public class ProcessMortgage {
             }
         }
 
+        //show all added mortgages
+        String message = "";
         for (Mortgage mort: mortgages){
-            JOptionPane.showMessageDialog(null, mort.getMortgageInfo());
+            message += String.format("%s%n%n", mort.getMortgageInfo());
         }
+        JOptionPane.showMessageDialog(null,message);
     }
 }
